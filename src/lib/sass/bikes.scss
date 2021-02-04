@@ -1,0 +1,254 @@
+@import './variables.scss';
+
+.btn-primary:hover,.btn-primary:focus,.btn-primary:active, 
+.btn-primary:active:focus:not(:disabled):not(.disabled),
+.btn:focus, .btn:active, .btn:hover{
+    box-shadow: none!important;
+    outline: 0;
+}
+
+input[type="text"], input[type="password"], textarea, select { 
+    outline: none;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    font-family: $app-font-family;
+    padding-left: 10px;
+    color: $component-background-light;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer */
+    font-family: $app-font-family;
+    padding-left: 10px;
+    color: $component-background-light;
+  }
+  
+  ::placeholder {
+    font-family: $app-font-family;
+    padding-left: 10px;
+    color: $component-background-light;
+  }
+
+.Bikes__App {
+    font-family: $app-font-family;
+    font-size: $app-font-default-size;
+    background-color: $app-background-color;
+    color: $app-color;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.Workspace__container {
+    right: 0;
+    display: flex;
+    flex: 0.4;
+    flex-direction: row;
+    .workspace__controls {
+        background-color: $component-background-dark;
+        box-shadow: 0px 2px 2px 0px $component-background-dark;
+        width: 100%;
+        padding: 5px;
+        hr {
+            border-top: 1px dotted $link-color;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+
+        }
+        .bikes__component {
+            background-color: $component-background-light;
+            padding: 5px;
+            .bike__stations_search_form {
+                svg {
+                    color: $component-background-dark;
+                }
+                input {
+                    border: 0;
+                }
+            }
+            .stations__table {
+                color: $primary-text-color;
+                font-family: $app-font-family;
+                font-size: $app-font-default-size;
+                th, td {
+                    border-top: 1px dotted $link-color;
+                }
+            }
+        }
+    }
+}
+
+.bikes__widget_component {
+    background-color: transparentize($component-background-dark, 0.4);
+    .bikes__widget_header {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        small {
+            font-style: italic;
+        }
+    }
+    .bikes__widget_body_header {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        small {
+            color: #fff;
+            font-style: italic;
+        }
+    }
+    .bikes__widget_body {
+
+    }
+    &.bikes__station_status {
+        position: absolute;
+        top: 2%;
+        width: 25%;
+        left: 35%;
+        padding: 10px;
+        border-radius: 5px;
+        hr {
+            border-top: 1px dotted $link-color;;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+.Map__container {
+    height: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+}
+
+.workspace__toggle {
+    position: absolute;
+    color: $component-background-dark;
+    &:hover {
+        color: $link-color;
+    }
+    right: 30%;
+    background: transparent;
+    top: 50%;
+    border: 1px solid $component-background-dark;
+    border-radius: 30px;
+    box-shadow: 0px 2px 2px 0px $component-background-dark;
+}
+
+.bikes__link {
+    color: $link-color;
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+
+.bikes__link_for_darkcomponent {
+    color: $primary-text-color;
+    &:hover {
+        color: $link-color;
+    }
+}
+
+.bikes__link_for_lightcomponent {
+    color: $link-color;
+    &:hover {
+        color: $primary-text-color;
+    }
+}
+
+.map__icon_window {
+    position: absolute;
+    background: $component-background-dark;
+    border-radius: 3px;
+    .map__toggle_button {
+        align-items: center;
+        color: $link-color;
+        display: flex;
+        border-radius: 10px;
+        box-shadow: 0 2px 2px $component-background-dark;
+        h3, h4, h5, h6 {
+            padding-right: 10px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.bikes__brand_container {
+    padding: 5px;
+    text-align: center;
+    border-radius: 40px;
+    max-width: 100px;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 1px 1px 0px $link-color;
+    .bikes__brand {
+        font-size: 1em;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        &.title {
+            transform: scale(1, 1.3);
+            -webkit-transform: scale(1, 1.3);
+            -moz-transform: scale(1, 1.3);
+            -o-transform: scale(1, 1.3);
+            -ms-transform: scale(1, 1.3);
+        }
+        .text {
+            font-family: monospace;
+            letter-spacing: -0.01em;
+            color: $link-color;
+            -webkit-text-stroke: 0.01em #000;
+            filter: progid:DXImageTransform.Microsoft.Glow(Color=$component-background-dark, Strength=1);
+            text-shadow: 0.03em 0.03em 0 $link-color;
+        }
+      }
+      
+      .bikes__sub_brand {  
+        font-size: 0.5em;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        &.title {
+            transform: scale(1, 1.3);
+            -webkit-transform: scale(1, 1.3);
+            -moz-transform: scale(1, 1.3);
+            -o-transform: scale(1, 1.3);
+            -ms-transform: scale(1, 1.3);
+        }
+        .text {
+            font-family: cursive;
+            letter-spacing: -0.01em;
+            color: $link-color;
+            -webkit-text-stroke: 0.01em #000;
+            filter: progid:DXImageTransform.Microsoft.Glow(Color=$component-background-dark, Strength=1);
+            text-shadow: 0.03em 0.03em 0 $link-color;
+        }
+      }
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-group {
+    border-radius: 30px;
+    button {
+        border-top: none;
+        box-shadow: none;
+        border: 1px solid $component-background-dark;
+        border-radius: 30px;
+        &:hover, &:focus {
+            background-color: $link-color;
+            border-radius: 30px;
+        }
+        
+    }
+}
+
+.mapboxgl-ctrl-group:not(:empty) {
+    box-shadow: none;
+    background: transparent;
+}

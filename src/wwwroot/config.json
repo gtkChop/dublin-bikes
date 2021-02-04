@@ -1,0 +1,87 @@
+{
+    "map": {
+        "accessToken": "pk.eyJ1Ijoic3dhcm9vcGJoYXQxMjMiLCJhIjoiY2trazl1N2x6MjR3bjJwcXRqZ2MyeWlvaiJ9.U5-_6vqdlF8F_jgAHXda_g",
+        "baseLayer": "mapbox://styles/mapbox/light-v10",
+        "initLat": 53.33,
+        "initLng": -6.25,
+        "initZoom": 10,
+        "layers": [{
+            "id": "stations",
+            "type": "circle",
+            "source": "stations",
+            "paint": {
+                "circle-color": [
+                    "step",
+                    ["get", "point_count"],
+                    "#f27c0e",
+                    20,
+                    "#19563c",
+                    80,
+                    "#ffea05"
+                ],
+                "circle-radius": [
+                    "step",
+                    ["get", "point_count"],
+                    30,
+                    30,
+                    40,
+                    300,
+                    50
+                ],
+                "circle-opacity": 0.7,
+                "circle-stroke-color": "#0e62f2",
+                "circle-stroke-width": 1
+              }
+        },
+        {
+            "id": "cluster-count",
+            "type": "symbol",
+            "source": "stations",
+            "filter": ["has", "point_count"],
+            "layout": {
+                "text-field": "{point_count_abbreviated}",
+                "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                "text-size": 14
+            }
+        },
+        {
+            "id": "unclustered-point",
+            "type": "circle",
+            "source": "stations",
+            "filter": ["!", ["has", "point_count"]],
+            "paint": {
+                "circle-color": "#11b4da",
+                "circle-radius": 12,
+                "circle-stroke-width": 1,
+                "circle-stroke-color": "#fff"
+            }
+        }
+
+        ]
+    },
+    "weatherAPI": {
+        "url": "https://api.openweathermap.org/data/2.5/onecall",
+        "accessToken": "571357d5ac423a42a23e00db833f6138"
+    },
+    "bikesAPI": {
+        "dublinBikes": {
+            "stationsUrl": "https://cors-anywhere.herokuapp.com/https://dublinbikes.staging.derilinx.com/api/v1/resources/station",
+            "historicalUrl": "https://cors-anywhere.herokuapp.com/https://dublinbikes.staging.derilinx.com/api/v1/resources/historical",
+            "apiKey": ""
+        },
+        "bleeperBikes": {
+            "stationsUrl": "",
+            "historicalUrl": "",
+            "apiKey": ""
+        },
+        "mobyBikes": {
+            "stationsUrl": "",
+            "historicalUrl": "",
+            "apiKey": ""
+        }
+    },
+    "appConfig": {
+        "reverseProxy": "https://cors-anywhere.herokuapp.com/",
+        "itemsPerPageStationsTable": 5
+    }
+}
