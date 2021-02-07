@@ -3,7 +3,7 @@
         "accessToken": "pk.eyJ1Ijoic3dhcm9vcGJoYXQxMjMiLCJhIjoiY2trazl1N2x6MjR3bjJwcXRqZ2MyeWlvaiJ9.U5-_6vqdlF8F_jgAHXda_g",
         "baseLayer": "mapbox://styles/mapbox/light-v10",
         "initLat": 53.33,
-        "initLng": -6.25,
+        "initLng": -6.1,
         "initZoom": 10,
         "layers": [{
             "id": "stations",

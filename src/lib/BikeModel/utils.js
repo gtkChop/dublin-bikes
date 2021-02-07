@@ -129,11 +129,31 @@ function getCurrentDateDiffHours(subhours=0) {
     }
 }
 
+function getDifferenceBetweenDates(date1, date2, inHours=false) {
+    var date1 = new Date(date1);
+    var date2 = new Date(date2);
+    const diffTime = date2 - date1;
+    if (inHours) {
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60)); 
+        return diffDays
+    }
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    return diffDays
+}
+
+function getShortDateTime(val) {
+    const date = new Date(val)
+    const cleanVal = `${date.getDay()} @ ${date.getHours()} hr ${date.getMinutes()} mins`
+    return cleanVal
+}
+
 export {
     uuidv4,
     FuzzyMatch,
     TitleCase,
     ConfigLoader,
     addMapDataControlsEvents,
-    getCurrentDateDiffHours
+    getCurrentDateDiffHours,
+    getDifferenceBetweenDates,
+    getShortDateTime
 }

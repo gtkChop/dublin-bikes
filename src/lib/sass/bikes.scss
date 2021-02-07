@@ -42,8 +42,11 @@ input[type="text"], input[type="password"], textarea, select {
 .Workspace__container {
     right: 0;
     display: flex;
-    flex: 0.4;
+    width: 500px;
+    min-height: 100%;
+    position: absolute;
     flex-direction: row;
+    z-index: 999;
     .workspace__controls {
         background-color: $component-background-dark;
         box-shadow: 0px 2px 2px 0px $component-background-dark;
@@ -69,7 +72,7 @@ input[type="text"], input[type="password"], textarea, select {
             .stations__table {
                 color: $primary-text-color;
                 font-family: $app-font-family;
-                font-size: $app-font-default-size;
+                font-size: 15px;
                 th, td {
                     border-top: 1px dotted $link-color;
                     border-bottom: 1px dotted $link-color;
@@ -77,7 +80,7 @@ input[type="text"], input[type="password"], textarea, select {
             }
         }
         .bikes__historical_filter {
-            margin-top: 10px;
+            margin-top: 0;
             margin-bottom: 10px;
             input {
                 max-width: 50%;
@@ -149,14 +152,11 @@ input[type="text"], input[type="password"], textarea, select {
             font-style: italic;
         }
     }
-    .bikes__widget_body {
-
-    }
     &.bikes__station_status {
         position: absolute;
-        top: 2%;
-        width: 25%;
-        left: 35%;
+        top: 110px;
+        width: 250px;
+        left: 10px;
         padding: 10px;
         border-radius: 5px;
         hr {
@@ -165,10 +165,19 @@ input[type="text"], input[type="password"], textarea, select {
             margin-bottom: 0.5rem;
         }
     }
+    &.bikes__historical_data {
+        position: absolute;
+        bottom: 10px;
+        padding: 10px;
+        left: 120px;
+        border-radius: 5px;
+        width: 500px;
+    }
 }
 
 .Map__container {
     min-height: 100%;
+    width: 100%;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0%;
@@ -180,12 +189,9 @@ input[type="text"], input[type="password"], textarea, select {
     &:hover {
         color: $link-color;
     }
-    right: 30%;
+    right: 500px;
     background: transparent;
     top: 50%;
-    border: 1px solid $component-background-dark;
-    border-radius: 30px;
-    box-shadow: 0px 2px 2px 0px $component-background-dark;
 }
 
 .bikes__link {
@@ -310,8 +316,4 @@ input[type="text"], input[type="password"], textarea, select {
 .mapboxgl-ctrl-group:not(:empty) {
     box-shadow: none;
     background: transparent;
-}
-
-.bike__component_hide {
-    display: none;
 }

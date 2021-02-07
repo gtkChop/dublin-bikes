@@ -5,7 +5,7 @@ import { faToolbox, faArrowLeft } from '@fortawesome/fontawesome-free-solid'
 function WorkSpaceIcon(props) {
     return (
         <div 
-            className={props.isShow? "map__icon_window" : "map__icon_window bike__component_hide"} 
+            className="map__icon_window"
             style={{
                 top: "3%",
                 right: "2%"

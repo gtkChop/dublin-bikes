@@ -4,7 +4,8 @@ import Workspace from './WorkSpace/Workspace';
 import geojsonData from '../../wwwroot/stationsGeojson.json';
 import allStations from '../../wwwroot/allStations.json';
 import {addMapDataControlsEvents} from '../BikeModel/utils'
-import BikesAvailability from './CurrentStatus/BikesAvailability'
+import BikesAvailability from '../BikeModel/HistoricalData/BikesAvailability'
+import FiltersModel from '../BikeModel/HistoricalData/FiltersModel'
 
 
 class BikesDashBoard extends Component {
@@ -20,8 +21,15 @@ class BikesDashBoard extends Component {
             baseLayer: props.baseLayer || props.config.map.baseLayer,
             workSpaceToggleState: props.config.appConfig.defaultWorkSpaceToggled || false,
             selectedStationData: null,
-            showCurrentAvailability: props.showCurrentAvailability || false
+            showCurrentAvailability: props.showCurrentAvailability || false,
+            historicalFormData: props.historicalFormData || {}
         }
+    }
+
+    handleHistoricalFormData = (data) => {
+        this.setState({
+            historicalFormData: data
+        })
     }
 
     workSpaceToggleHandler = () => {
@@ -73,12 +81,6 @@ class BikesDashBoard extends Component {
         addMapDataControlsEvents(geojsonData, this.map, this.state.config, this.mapClickEvent)
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if (prevState.workSpaceToggleState !== this.state.workSpaceToggleState) {
-            this.map.resize()
-        }
-    }
-
     componentWillUnmount() {
         this.map.remove();
     }
@@ -94,6 +96,7 @@ class BikesDashBoard extends Component {
                     workSpaceToggleHandler={this.workSpaceToggleHandler}
                     data={allStations}
                     locationInMapEvent={this.locationInMapEvent}
+                    handleHistoricalFormData={this.handleHistoricalFormData}
                 />
                 {
                     this.state.showCurrentAvailability ?
@@ -105,7 +108,11 @@ class BikesDashBoard extends Component {
                     </BikesAvailability>
                     :null
                 }
-                
+                {
+                    (Object.keys(this.state.historicalFormData).length > 0) ?
+                        <FiltersModel formData={this.state.historicalFormData} config={this.state.config} />
+                    :null
+                }
             </>
         )
     }

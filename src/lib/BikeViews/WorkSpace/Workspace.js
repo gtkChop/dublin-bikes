@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleRight } from '@fortawesome/fontawesome-free-solid'
+import { faShare } from '@fortawesome/fontawesome-free-solid'
+import { Transition } from 'react-transition-group'
 import WorkSpaceIcon from '../../BikeModel/WorkSpace/WorkSpaceIcon'
 import WorkSpaceBrand from '../../BikeModel/WorkSpace/WorkSpaceBrand'
 import BikeSations from './BikeStations'
@@ -8,22 +9,43 @@ import Filters from './Filters'
 
 function Workspace(props) {
 
+    const duration = 500
+    const sidebarStyle = {
+        transition: `opacity ${duration}ms`,
+    }
+    const sidebarTransitionStyles = {
+        entering: { opacity: 0, visibility: "hidden"},
+        entered: { opacity: 1, visibility: "visible"},
+        exiting: { opacity: 1, visibility: "visible"},
+        exited: { opacity: 0, visibility: "hidden"}
+    }
+
     return (
     <>
-        <WorkSpaceIcon clickEvent={props.workSpaceToggleHandler} isShow={props.workSpaceToggleState}/>
-        <div className= {!props.workSpaceToggleState? "Workspace__container": "Workspace__container bike__component_hide"}>
-            <button 
-                className="btn btn-link workspace__toggle" 
-                onClick={() => props.workSpaceToggleHandler()}
-            >
-                <FontAwesomeIcon icon={faAngleDoubleRight} size="lg"/>
-            </button>
-            <div className="workspace__controls">
-                <WorkSpaceBrand />
-                <BikeSations config={props.config} data={props.data} locationInMapEvent={props.locationInMapEvent}/>
-                <Filters allStations={props.data}/>
-            </div>
-        </div>
+        {
+            props.workSpaceToggleState?
+            <WorkSpaceIcon clickEvent={props.workSpaceToggleHandler}/>
+            :null    
+        }
+        
+        <Transition in={!props.workSpaceToggleState} timeout={duration}>
+            {(state) => (
+                <div className="Workspace__container" style={{...sidebarStyle, ...sidebarTransitionStyles[state]}}>
+                    <button 
+                        className="btn btn-link workspace__toggle" 
+                        onClick={() => props.workSpaceToggleHandler()}
+                        style={{...sidebarStyle, ...sidebarTransitionStyles[state]}}
+                    >
+                        <FontAwesomeIcon icon={faShare} size="lg"/>
+                    </button>
+                    <div className="workspace__controls">
+                        <WorkSpaceBrand />
+                        <BikeSations config={props.config} data={props.data} locationInMapEvent={props.locationInMapEvent}/>
+                        <Filters allStations={props.data} config={props.config} handleHistoricalFormData={props.handleHistoricalFormData}/>
+                    </div>
+                </div>
+            )}
+        </Transition>
     </>
     )
 }
