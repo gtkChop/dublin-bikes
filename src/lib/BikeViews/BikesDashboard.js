@@ -32,21 +32,35 @@ class BikesDashBoard extends Component {
 
     locationInMapEvent = (e) => {
         const value = e.target.value
-        const data= JSON.parse(value)
-
+        const eventData= JSON.parse(value)
         this.map.flyTo({
-            center: [data.st_LONGITUDE, data.st_LATITUDE,],
+            center: [eventData.st_LONGITUDE, eventData.st_LATITUDE,],
             speed: 1,
             zoom: 18 
         }) 
         this.setState(prevState => {
             return {
-                selectedStationData: data,
+                selectedStationeventData: eventData,
                 showCurrentAvailability: true
             }
         })
     }
 
+    mapClickEvent = (eventData) => {
+        this.setState(prevState => {
+            return {
+                selectedStationeventData: eventData,
+                showCurrentAvailability: true
+            }
+        })
+    }
+
+    bikeStatusCloseHandler = () => {
+        this.setState({
+            showCurrentAvailability: false
+        })
+    }
+    
     componentDidMount(){
         mapboxgl.accessToken = this.state.config.map.accessToken
         this.map = new mapboxgl.Map({
@@ -56,7 +70,7 @@ class BikesDashBoard extends Component {
             zoom: this.state.zoom,
             trackResize: true
         })
-        addMapDataControlsEvents(geojsonData, this.map, this.state.config)
+        addMapDataControlsEvents(geojsonData, this.map, this.state.config, this.mapClickEvent)
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -70,8 +84,6 @@ class BikesDashBoard extends Component {
     }
 
     render() {
-        console.log("**********")
-        console.log(this.state)
         return (
             <>
                 <div className="Map__container" ref={el => this.mapRefContainer = el}>
@@ -86,8 +98,10 @@ class BikesDashBoard extends Component {
                 {
                     this.state.showCurrentAvailability ?
                     <BikesAvailability 
-                        selectedStationData={this.state.selectedStationData} 
-                        config={this.state.config}>
+                        selectedStationData={this.state.selectedStationeventData} 
+                        config={this.state.config}
+                        udateData={this.state._updateBikeAvailability}
+                        closeHandler={this.bikeStatusCloseHandler}>
                     </BikesAvailability>
                     :null
                 }

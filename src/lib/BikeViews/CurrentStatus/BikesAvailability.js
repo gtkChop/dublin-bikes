@@ -1,58 +1,82 @@
 import React, {useState, useEffect} from 'react'
 import fetch from 'cross-fetch'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faToggleOn, faToggleOff, faTimes } from '@fortawesome/fontawesome-free-solid'
 import {getCurrentDateDiffHours} from '../../BikeModel/utils'
 import BikeStatus from './BikeStatus'
 
 function BikesAvailability(props) {
-
-    //const [bikeStatus, setBikesStatus] = useState({})
-    const [errorMessage, seterrorMessage] = useState({})
-    //const dateRange = getCurrentDateDiffHours(1)
+    
+    const [bikeStatus, setBikesStatus] = useState({"bike_status": {}, "errors": {}})
     const selectedStationData = props.selectedStationData
-    /*
+
+    const [toggle, setToggle] = useState(true)
+    const toggleHandler = () => {
+        setToggle(!toggle)
+    }
+
     useEffect(() => {
-        const url = props.config.bikesAPI.dublinBikes.historicalUrl
-        console.log(url)
-        console.log(selectedStationData)
-        console.log(dateRange)
-        fetch(`${url}/?dfrom=${dateRange.diffDate}&dto=${dateRange.currentDate}&station=${selectedStationData.st_ID}`, {
+        const endPoint = props.config.bikesAPI.dublinBikes.historicalUrl
+        const dateRange = getCurrentDateDiffHours(1)
+        const url = `${endPoint}/?dfrom=${dateRange.diffDate}&dto=${dateRange.currentDate}&station=${props.selectedStationData.st_ID}`
+        fetch(url, {
             method: 'GET',
             mode: 'cors',
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
             }
         })
         .then(response => response.json())
         .then(data => {
             if ((data.length > 0) && (data[0].historic.length > 0)) {
-                setBikesStatus(data[0].historic.pop())
+                setBikesStatus({"bike_status": data[0].historic.pop(), "errors": {}})
             } else {
-                seterrorMessage({"msg": "Current data is empty for a given status"})
+                setBikesStatus({"bike_status": {}, "errors": {"msg": "Current data is empty for a given status"}})
             }
         })
         .catch((error) => {
             console.warn(error)
-            seterrorMessage({"msg": "Bikes API service is down. Cannot retrieve data"})
+            setBikesStatus({"bike_status": {}, "errors": {"msg": "Current data is empty for a given status"}})
         })
         
-    }, []) */
+    }, [props.selectedStationData.st_ID])
 
-    const bikeStatus = {'available_bike_stands': 17, 'available_bikes': 3, 'bike_stands': 20, 'status': 'open', 'time': '2021-02-04T22:00:02Z'}
 
-    if ((Object.keys(bikeStatus).length > 0) ||(Object.keys(bikeStatus).length > 0)) {
-        return (
-            <div className="bikes__station_status bikes__widget_component">
-                <BikeStatus 
-                    bikeStatus={bikeStatus} 
-                    errorMessage={errorMessage} 
-                    historicaData={bikeStatus}
-                    selectedStationData={selectedStationData}
-                />
+    return (
+        <div className="bikes__station_status bikes__widget_component">
+            <div style={{position: "absolute", right: "5px", top: "1px"}}>
+                <button 
+                    className="btn btn-link bikes__link_for_darkcomponent" 
+                    style={{padding: "0", margin: "0", width: "30px"}}
+                    onClick={() => toggleHandler()}
+                >
+                    <FontAwesomeIcon icon={toggle?faToggleOn:faToggleOff} size="sm"/>
+                </button>
+                <button 
+                    className="btn btn-link bikes__link_for_darkcomponent" 
+                    style={{padding: "0", margin: "0", width: "30px"}}
+                    onClick={() => props.closeHandler()}
+                >
+                    <FontAwesomeIcon icon={faTimes} size="sm"/>
+                </button>
             </div>
-        )
-    } else {
-        return null
-    }
+            <div className="bikes__widget_header">
+                <h5 style={{marginBottom: "0"}}>{props.selectedStationData.st_NAME}</h5>
+                <small>ID: {props.selectedStationData.st_ID}</small>
+                <small>Address: {props.selectedStationData.st_ADDRESS}</small>
+            </div>
+          
+            <BikeStatus 
+                bikeStatus={bikeStatus.bike_status} 
+                errorMessage={bikeStatus.errors} 
+                selectedStationData={selectedStationData}
+                toggle={toggle}
+            />
+        </div>
+    )
 }
 
 export default BikesAvailability

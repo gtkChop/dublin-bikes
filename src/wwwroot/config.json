@@ -65,8 +65,8 @@
     },
     "bikesAPI": {
         "dublinBikes": {
-            "stationsUrl": "https://cors-anywhere.herokuapp.com/https://dublinbikes.staging.derilinx.com/api/v1/resources/station",
-            "historicalUrl": "https://cors-anywhere.herokuapp.com/https://dublinbikes.staging.derilinx.com/api/v1/resources/historical",
+            "stationsUrl": "http://localhost:8010/proxy/api/v1/resources/station",
+            "historicalUrl": "http://localhost:8010/proxy/api/v1/resources/historical",
             "apiKey": ""
         },
         "bleeperBikes": {
@@ -81,7 +81,7 @@
         }
     },
     "appConfig": {
-        "reverseProxy": "https://cors-anywhere.herokuapp.com/",
+        "reverseProxy": "http://127.0.0.1:5000/",
         "itemsPerPageStationsTable": 5
     }
 }

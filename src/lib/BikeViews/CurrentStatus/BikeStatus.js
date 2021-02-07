@@ -1,79 +1,34 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Doughnut} from 'react-chartjs-2'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faToggleOn, faToggleOff } from '@fortawesome/fontawesome-free-solid'
 
 function BikeStatus(props) {
 
-    const [toggle, setToggle] = useState(false)
+    if (Object.keys(props.bikeStatus).length > 0) {
 
-    const toggleHandler = () => {
-        setToggle(!toggle)
-    }
-
-    const data = {
-        labels: ["Available Bikes", "Available Bike Stands"],
-        datasets: [{
-            data: [props.bikeStatus.available_bikes, props.bikeStatus.available_bike_stands],
-            backgroundColor: ["#89ff00", "#ff9800"]
-
-        }]
-    }
- 
-    const options = {
-        legend: {
-            display: true,
-            labels: {
-                fontColor: "#fff"
+        const data = {
+            labels: ["Available Bikes", "Available Bike Stands"],
+            datasets: [{
+                data: [props.bikeStatus.available_bikes, props.bikeStatus.available_bike_stands],
+                backgroundColor: ["#89ff00", "#ff9800"]
+    
+            }]
+        }
+     
+        const options = {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: "#fff"
+                }
             }
         }
-    }
 
-    if (toggle) {
         return (
             <>
-                <div>
-                <button 
-                    className="btn btn-link bikes__link_for_darkcomponent" 
-                    style={{padding: "0", position: "absolute", top: "1px", right: "10px"}}
-                    onClick={() => toggleHandler()}
-                >
-                    <FontAwesomeIcon icon={faToggleOff} size="sm" />
-                </button>
-                </div>
-                <div className="bikes__widget_header">
-                    <h5 style={{marginBottom: "0"}}>{props.selectedStationData.st_NAME}</h5>
-                    <small>ID: {props.selectedStationData.st_ID}</small>
-                    <small>Address: {props.selectedStationData.st_ADDRESS}</small>
-                </div>
-            </>
-        )
-
-    } else {
-        return (
-            <>
-                <div>
-                    <button 
-                        className="btn btn-link bikes__link_for_darkcomponent" 
-                        style={{padding: "0", position: "absolute", top: "1px", right: "10px"}}
-                        onClick={() => toggleHandler()}
-                    >
-                        <FontAwesomeIcon icon={faToggleOn} size="sm" />
-                    </button>
-                </div>
-                <div className="bikes__widget_header">
-                    <h5 style={{marginBottom: "0"}}>{props.selectedStationData.st_NAME}</h5>
-                    <small>ID: {props.selectedStationData.st_ID}</small>
-                    <small>Address: {props.selectedStationData.st_ADDRESS}</small>
-                </div>
-                <hr></hr>
                 {
-                    Object.keys(props.errorMessage).length ?
-                        <div>
-                            {props.errorMessage.msg}
-                        </div>
-                    : 
+                    props.toggle?
                     <>
+                        <hr></hr>
                         <div className="bikes__widget_body_header" style={{color: "#fff"}}>
                             <small>Timestamp: {props.bikeStatus.time}</small>
                             <small>Status: {props.bikeStatus.status.toUpperCase()}</small>
@@ -84,11 +39,34 @@ function BikeStatus(props) {
                         <div>
                             <Doughnut data={data} options={options} style={{width: "100%", height:"100%"}}/>
                         </div>
-                    </>
+                    </>    
+                    :null
                 }
             </>
         )
+
     }
+
+    if (Object.keys(props.errorMessage).length > 0) {
+        return (
+            <>
+                <hr></hr>
+                <div className="bikes__widget_body_header bikes__errors">
+                    {props.errorMessage.msg}
+                </div>
+            </>
+        )
+    }
+
+    return props.toggle? (
+        <>
+            <hr></hr>
+            <div className="bikes__widget_body_header">
+                Loading Data .....
+            </div>
+        </>    
+    ): null
+    
 }
 
 export default BikeStatus

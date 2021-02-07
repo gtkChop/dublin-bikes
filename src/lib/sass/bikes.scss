@@ -34,9 +34,9 @@ input[type="text"], input[type="password"], textarea, select {
     font-size: $app-font-default-size;
     background-color: $app-background-color;
     color: $app-color;
-    height: 100vh;
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
 }
 
 .Workspace__container {
@@ -72,6 +72,56 @@ input[type="text"], input[type="password"], textarea, select {
                 font-size: $app-font-default-size;
                 th, td {
                     border-top: 1px dotted $link-color;
+                    border-bottom: 1px dotted $link-color;
+                }
+            }
+        }
+        .bikes__historical_filter {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            input {
+                max-width: 50%;
+                float: right;
+                font-size: 16px;
+                color: $component-background-light;
+            }
+            select {
+                float: right;
+                font-size: 16px;
+            }
+            p {
+                color: $secondary-text-color;
+                font-style: italic;
+                font-size: 15px;
+            }
+            .bikes_station_select {
+                min-height: 33px;
+                max-height: 33px;
+                font-size: 156px;
+                max-width: 62%;
+                min-width: 62%;
+                float: right;
+                .bikes_station_select__control {
+                    min-height: 33px;
+                    max-height: 33px;
+                    width: 100%;
+                }
+                .bikes_station_select__value-container {
+                    max-height: 28px;
+                    min-height: 28px;
+                    font-size: 15px;
+                    color: $component-background-light;
+                }
+                .bikes_station_select__placeholder, .bikes_station_select__option, .bikes_station_select__menu-list {
+                    font-size: 15px;
+                    color: $component-background-light!important;
+                }
+                .bikes_station_select__menu-list {
+                    max-height: 150px;
+                    overflow: scroll;
+                }
+                .css-1uccc91-singleValue {
+                    color: $component-background-light!important;
                 }
             }
         }
@@ -85,6 +135,7 @@ input[type="text"], input[type="password"], textarea, select {
         justify-content: center;
         display: flex;
         flex-direction: column;
+        margin-top: 15px;
         small {
             font-style: italic;
         }
@@ -117,7 +168,7 @@ input[type="text"], input[type="password"], textarea, select {
 }
 
 .Map__container {
-    height: 100%;
+    min-height: 100%;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0%;
@@ -155,6 +206,14 @@ input[type="text"], input[type="password"], textarea, select {
     color: $link-color;
     &:hover {
         color: $primary-text-color;
+    }
+}
+
+.bikes__button {
+    color: $component-background-light;
+    background: #fff;
+    &:hover {
+        color: $link-color;
     }
 }
 
@@ -251,4 +310,8 @@ input[type="text"], input[type="password"], textarea, select {
 .mapboxgl-ctrl-group:not(:empty) {
     box-shadow: none;
     background: transparent;
+}
+
+.bike__component_hide {
+    display: none;
 }

@@ -69,6 +69,7 @@ function clusterClickEvent(map) {
             clusterId,
             function (err, zoom) {
                 if (err) return;
+                if (!zoom) return;
                 
                 map.easeTo({
                     center: features[0].geometry.coordinates,
@@ -79,7 +80,14 @@ function clusterClickEvent(map) {
     });
 }
 
-function addMapDataControlsEvents(geojsonData, map, config) {
+function unClusteredClickEvent(map, clickEventHandler) {
+    map.on('click', 'unclustered-point', function (e) { 
+        var properties = e.features[0].properties
+        clickEventHandler(properties)
+    })
+}
+
+function addMapDataControlsEvents(geojsonData, map, config, clickEventHandler) {
     // Add map controls
     map.on('load', function(){
         map.addSource('stations', {
@@ -92,6 +100,13 @@ function addMapDataControlsEvents(geojsonData, map, config) {
         map.scrollZoom.disable();
         addLayers(config.map.layers, map)
         clusterClickEvent(map)
+        unClusteredClickEvent(map, clickEventHandler)
+        map.on('mouseenter', 'clusters', function () {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+        map.on('mouseleave', 'clusters', function () {
+            map.getCanvas().style.cursor = '';
+        });
         
     })
     map.addControl(new mapboxgl.NavigationControl(), 'top-left');
