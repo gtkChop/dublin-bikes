@@ -46,8 +46,10 @@ function BikesAvailability(props) {
 
 
     return (
-        <div className="bikes__station_status bikes__widget_component">
-            <div style={{position: "absolute", right: "5px", top: "1px"}}>
+        <div 
+            className="bikes__station_status bikes__widget_component">
+            <div 
+                style={{position: "absolute", right: "5px", top: "1px"}}>
                 <button 
                     className="btn btn-link bikes__link_for_darkcomponent" 
                     style={{padding: "0", margin: "0", width: "30px"}}

@@ -68,7 +68,11 @@ function HistoricalDataGraph(props) {
         prepareData()
         return (
             <div>
-                <Line data={data} options={options} style={{width: "100%", height:"100%"}}/>
+                <Line 
+                    data={data} 
+                    options={options} 
+                    style={{width: "100%", height:"100%"}}
+                />
             </div>
         )
     }

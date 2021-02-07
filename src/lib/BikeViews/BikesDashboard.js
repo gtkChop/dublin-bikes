@@ -6,6 +6,8 @@ import allStations from '../../wwwroot/allStations.json';
 import {addMapDataControlsEvents} from '../BikeModel/utils'
 import BikesAvailability from '../BikeModel/HistoricalData/BikesAvailability'
 import FiltersModel from '../BikeModel/HistoricalData/FiltersModel'
+import About from './About/About'
+import ResetMapView from './ResetMapView'
 
 
 class BikesDashBoard extends Component {
@@ -32,6 +34,14 @@ class BikesDashBoard extends Component {
         })
     }
 
+    handleMapReset = () => {
+        this.map.flyTo({
+            center: [this.state.config.map.initLng, this.state.config.map.initLat],
+            speed: 1,
+            zoom: this.state.config.map.initZoom 
+        }) 
+    }
+
     workSpaceToggleHandler = () => {
         this.setState(prevState => {
             return {workSpaceToggleState: !prevState.workSpaceToggleState}
@@ -42,7 +52,7 @@ class BikesDashBoard extends Component {
         const value = e.target.value
         const eventData= JSON.parse(value)
         this.map.flyTo({
-            center: [eventData.st_LONGITUDE, eventData.st_LATITUDE,],
+            center: [eventData.st_LONGITUDE, eventData.st_LATITUDE],
             speed: 1,
             zoom: 18 
         }) 
@@ -113,6 +123,8 @@ class BikesDashBoard extends Component {
                         <FiltersModel formData={this.state.historicalFormData} config={this.state.config} />
                     :null
                 }
+                <ResetMapView handleMapReset={this.handleMapReset}/>
+                <About />
             </>
         )
     }

@@ -317,3 +317,56 @@ input[type="text"], input[type="password"], textarea, select {
     box-shadow: none;
     background: transparent;
 }
+
+.bikes__about, .bikes__reset_map_view {
+    position: absolute;
+    top: 15px;
+    left: 300px;
+    background:$component-background-dark;
+    button {
+        align-items: center;
+        color: $link-color;
+        display: flex;
+        box-shadow: 0 2px 2px $component-background-dark;
+        &:hover {
+            color: $link-color;
+        }
+    }
+}
+
+.map__icon_window {
+    top: 15px;
+    right: 20px;
+}
+
+.bikes__reset_map_view {
+    top: 15px;
+    left: 150px;
+}
+
+.modal-content {
+    background-color: $component-background-light;
+    color: $primary-text-color;
+    border-radius: 10px;
+    min-width: 60%;
+    min-height: 60%;
+    padding: 10px;
+    .modal-header {
+        text-align: center;
+        background-color: $component-background-dark;
+        border-bottom: 1px solid $link-color;
+    }
+    .modal-footer {
+        background-color: $component-background-dark;
+    }
+    .close {
+        color: $primary-text-color;
+        opacity: 0.9;
+        &:hover {
+            color: $link-color;
+        }
+    }
+    .bikes__about_resources, .bikes__about_contact {
+        margin-top: 20px;
+    }
+}
