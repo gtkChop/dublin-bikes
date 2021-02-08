@@ -376,3 +376,28 @@ input[type="text"], input[type="password"], textarea, select {
         margin-top: 20px;
     }
 }
+
+.bikes__weather_modal {
+    min-width: 90%;
+    hr {
+        border-top: 1px dotted $link-color;
+        margin-top: 0.5rem;
+        margin-bottom: 20px;
+
+    }
+    .bikes__weather_forcast_header {
+        background-color: $component-background-dark;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid $link-color;
+    }
+    .bikes__weather_forcast_body {
+        padding: 10px;
+        margin: 5px;
+        font-size: 13px;
+    }
+}
+
+.bikes__cloud_link {
+    color: $link-color;
+}

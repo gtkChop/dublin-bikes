@@ -21,7 +21,7 @@ function WeatherWidget(props) {
                 show={show} 
                 onHide={handleClose}
                 aria-labelledby="contained-modal-title-vcenter"
-                dialogClassName="modal-90w"
+                dialogClassName="bikes__weather_modal"
                 centered
             >
                 <Modal.Header closeButton>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import WindIcon from '../../assets/wind.svg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTint, faDotCircle, faCloud} from '@fortawesome/fontawesome-free-solid'
+import WeatherForecast from './WeatherForecast'
 
 function TodaysWeather(props){
 
@@ -57,25 +58,26 @@ function TodaysWeather(props){
                     <h2>{weatherData.weather.current.temp} &#176;C</h2>
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <h6> Feels Like {weatherData.weather.current.feels_like} C</h6>
+                    <h6> Feels Like {weatherData.weather.current.feels_like} &#176;C</h6>
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
     
-                    <img src={WindIcon} alt="Current wind" style={{width:"15px", paddingRight:"5px"}}></img>
+                    <img src={WindIcon} alt="Current wind" style={{width:"15px", marginRight:"5px"}}></img>
                     <small style={{paddingRight: "10px"}}>{weatherData.weather.current.wind_speed} m/s NW</small>
     
     
-                    <FontAwesomeIcon icon={faTint} size='sm' style={{paddingRight:"5px", paddingTop: "5px"}}/>
+                    <FontAwesomeIcon icon={faTint} size='sm' style={{marginRight:"5px", marginTop: "2px"}}/>
                     <small style={{paddingRight: "10px"}}>{weatherData.weather.current.humidity} %</small>
     
-                    <FontAwesomeIcon icon={faDotCircle} size='sm' style={{paddingRight:"5px", paddingTop: "5px"}}/>
+                    <FontAwesomeIcon icon={faDotCircle} size='sm' style={{marginRight:"5px", marginTop: "2px"}}/>
                     <small style={{paddingRight: "10px"}}>{weatherData.weather.current.pressure} mm Hg</small>
     
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <p style={{margin: "0"}}>{weatherData.weather.current.weather[0].description}</p>
+                    <b><p style={{margin: "0"}}>{weatherData.weather.current.weather[0].description}</p></b>
                 </div>
-    
+                <hr></hr>
+                <WeatherForecast hourly={weatherData.weather.hourly} noItems={6}/>
             </div>
         )
     }
