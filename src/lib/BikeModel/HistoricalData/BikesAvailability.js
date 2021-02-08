@@ -42,7 +42,7 @@ function BikesAvailability(props) {
             setBikesStatus({"bike_status": {}, "errors": {"msg": "Current data is empty for a given status"}})
         })
         
-    }, [props.selectedStationData.st_ID])
+    }, [props.selectedStationData.st_ID, props.config.bikesAPI.dublinBikes.historicalUrl])
 
 
     return (

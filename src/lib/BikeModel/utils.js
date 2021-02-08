@@ -1,15 +1,5 @@
 import mapboxgl from 'mapbox-gl';
 
-function uuidv4() {
-    /* 
-        Generates uuid4
-    */
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-}
-
 function FuzzyMatch (val, s) {
     /* 
         Match fuzzy returns boolean
@@ -70,7 +60,6 @@ function clusterClickEvent(map) {
             function (err, zoom) {
                 if (err) return;
                 if (!zoom) return;
-                
                 map.easeTo({
                     center: features[0].geometry.coordinates,
                     zoom: zoom
@@ -130,9 +119,9 @@ function getCurrentDateDiffHours(subhours=0) {
 }
 
 function getDifferenceBetweenDates(date1, date2, inHours=false) {
-    var date1 = new Date(date1);
-    var date2 = new Date(date2);
-    const diffTime = date2 - date1;
+    var d1 = new Date(date1);
+    var d2 = new Date(date2);
+    const diffTime = d2 - d1;
     if (inHours) {
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60)); 
         return diffDays
@@ -143,12 +132,11 @@ function getDifferenceBetweenDates(date1, date2, inHours=false) {
 
 function getShortDateTime(val) {
     const date = new Date(val)
-    const cleanVal = `${date.getDay()} @ ${date.getHours()} hr ${date.getMinutes()} mins`
+    const cleanVal = `${date.getDay()}/${date.getMonth()}@ ${date.getHours()}:${date.getMinutes()} hrs`
     return cleanVal
 }
 
 export {
-    uuidv4,
     FuzzyMatch,
     TitleCase,
     ConfigLoader,

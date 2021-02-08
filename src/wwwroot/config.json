@@ -60,7 +60,7 @@
         ]
     },
     "weatherAPI": {
-        "url": "https://api.openweathermap.org/data/2.5/onecall",
+        "url": "http://localhost:8010/proxy/data/2.5/onecall",
         "accessToken": "571357d5ac423a42a23e00db833f6138"
     },
     "bikesAPI": {
@@ -82,6 +82,7 @@
     },
     "appConfig": {
         "reverseProxy": "http://127.0.0.1:5000/",
-        "itemsPerPageStationsTable": 5
+        "itemsPerPageStationsTable": 5,
+        "version": 1.0
     }
 }

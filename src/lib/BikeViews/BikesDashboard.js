@@ -8,6 +8,7 @@ import BikesAvailability from '../BikeModel/HistoricalData/BikesAvailability'
 import FiltersModel from '../BikeModel/HistoricalData/FiltersModel'
 import About from './About/About'
 import ResetMapView from './ResetMapView'
+import WeatherWidget from './Weather/WeatherWidget';
 
 
 class BikesDashBoard extends Component {
@@ -125,6 +126,7 @@ class BikesDashBoard extends Component {
                 }
                 <ResetMapView handleMapReset={this.handleMapReset}/>
                 <About />
+                <WeatherWidget config={this.state.config}/>
             </>
         )
     }

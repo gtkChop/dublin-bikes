@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Modal, Button} from 'react-bootstrap'
+import {Modal} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle, faBug, faEnvelope } from '@fortawesome/fontawesome-free-solid'
 
@@ -12,6 +12,7 @@ function About(props) {
     return (
         <div className="bikes__about">
             <button className="btn btn-link" onClick={handleShow}>
+                <FontAwesomeIcon icon={faInfoCircle} style={{marginRight: "5px"}} size="sm"/>
                 About
             </button>
 
@@ -42,23 +43,23 @@ function About(props) {
                         </h6>
                         <p>
                             All the bikes near real time data is taken from 
-                            <a className="bikes__link"href="https://data.smartdublin.ie" target="_blank">
+                            <a className="bikes__link"href="https://data.smartdublin.ie" target="_blank" rel="noreferrer">
                                 {' data.smartdublin.ie'}
                             </a>
                         </p>
                         <ul>
                             <li>
-                                <a className="bikes__link"href="https://data.smartdublin.ie/dataset/dublinbikes-api" target="_blank">
+                                <a className="bikes__link"href="https://data.smartdublin.ie/dataset/dublinbikes-api" target="_blank" rel="noreferrer">
                                     Dublin Bikes
                                 </a>
                             </li>
                             <li>
-                                <a className="bikes__link"href="https://data.smartdublin.ie/dataset/dublinbikes-api" target="_blank">
+                                <a className="bikes__link"href="https://data.smartdublin.ie/dataset/dublinbikes-api" target="_blank" rel="noreferrer">
                                     Moby Bikes
                                 </a>
                             </li>
                             <li>
-                                <a className="bikes__link"href="https://data.smartdublin.ie/dataset/dublinbikes-api" target="_blank">
+                                <a className="bikes__link"href="https://data.smartdublin.ie/dataset/dublinbikes-api" target="_blank" rel="noreferrer">
                                     Bleeper Bikes
                                 </a>
                             </li>
@@ -75,7 +76,7 @@ function About(props) {
                         <div>
                             <FontAwesomeIcon icon={faBug} style={{marginRight: "10px"}}/>
                             Log any bugs found 
-                            <a className="bikes__link"href="https://github.com/gtkChop/dublin-bikes/issues" target="_blank">
+                            <a className="bikes__link"href="https://github.com/gtkChop/dublin-bikes/issues" target="_blank" rel="noreferrer">
                                 {' '}here.
                             </a>   
                         </div>

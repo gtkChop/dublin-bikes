@@ -26,7 +26,7 @@ function Filters(props) {
             return null
         })
         setStations(options)
-    }, [])  
+    }, [props.allStations])  
       
     const handleSelectedStation = selectedOption => {
         setSelectedOption(selectedOption)

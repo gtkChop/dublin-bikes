@@ -37,7 +37,7 @@ function FiltersModel(props) {
             setHistoricalData({"historic": [], "errors": "Error while fetching historical data"})
         })
         
-    }, [props.formData.from, props.formData.to, props.formData.station.data.st_ID])
+    }, [props.formData.from, props.formData.to, props.formData.station.data.st_ID, props.config.bikesAPI.dublinBikes.historicalUrl])
 
     if (!close) {
         return (

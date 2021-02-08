@@ -37,7 +37,7 @@ class StationsTable extends Component {
 
     search(searchValue) {
         searchValue = searchValue.trim()
-        if (searchValue.length == 0){
+        if (searchValue.length === 0){
             return this.state.data
         }
         const data = []
@@ -93,7 +93,7 @@ class StationsTable extends Component {
         /*
         Populate the sate from props
         */
-        if ((!this.state.data.length) || (this.state.columns == 0)){
+        if ((!this.state.data.length) || (this.state.columns === 0)){
             throw new Error("Tbale is initialised without data or column information")
         }
 

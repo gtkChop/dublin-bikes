@@ -318,10 +318,10 @@ input[type="text"], input[type="password"], textarea, select {
     background: transparent;
 }
 
-.bikes__about, .bikes__reset_map_view {
+.bikes__about, .bikes__reset_map_view, .bikes__weather {
     position: absolute;
     top: 15px;
-    left: 300px;
+    left: 100px;
     background:$component-background-dark;
     button {
         align-items: center;
@@ -341,8 +341,14 @@ input[type="text"], input[type="password"], textarea, select {
 
 .bikes__reset_map_view {
     top: 15px;
-    left: 150px;
+    left: 200px;
 }
+
+.bikes__weather {
+    top: 15px;
+    left: 315px;
+}
+
 
 .modal-content {
     background-color: $component-background-light;

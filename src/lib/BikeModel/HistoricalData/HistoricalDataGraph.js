@@ -1,6 +1,6 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
-import {getShortDateTime, getDifferenceBetweenDates} from '../utils'
+import {getShortDateTime} from '../utils'
 
 function HistoricalDataGraph(props) {
 
@@ -55,7 +55,7 @@ function HistoricalDataGraph(props) {
         if (totalLength > 1) {
             pushDataToPlot(props.data.historic[0])
             for (var i=1; i<props.data.historic.length; i++) {
-                if ((i%multipleOf) == 0) {
+                if ((i%multipleOf) === 0) {
                     pushDataToPlot(props.data.historic[i])
                 }
             }

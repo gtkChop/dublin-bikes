@@ -6,6 +6,7 @@ import WorkSpaceIcon from '../../BikeModel/WorkSpace/WorkSpaceIcon'
 import WorkSpaceBrand from '../../BikeModel/WorkSpace/WorkSpaceBrand'
 import BikeSations from './BikeStations'
 import Filters from './Filters'
+import Footer from './Footer'
 
 function Workspace(props) {
 
@@ -42,6 +43,7 @@ function Workspace(props) {
                         <WorkSpaceBrand />
                         <BikeSations config={props.config} data={props.data} locationInMapEvent={props.locationInMapEvent}/>
                         <Filters allStations={props.data} config={props.config} handleHistoricalFormData={props.handleHistoricalFormData}/>
+                        <Footer config={props.config}/>
                     </div>
                 </div>
             )}
