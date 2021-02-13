@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Modal} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloud, faInfoCircle } from '@fortawesome/fontawesome-free-solid'
+import { faCloud } from '@fortawesome/fontawesome-free-solid'
 import TodaysWeather from '../../BikeModel/Weather/TodaysWeather'
 
 function WeatherWidget(props) {
@@ -11,10 +11,10 @@ function WeatherWidget(props) {
     const handleShow = () => setShow(true);
 
     return (
-        <div className="bikes__weather">
-            <button className="btn btn-link" onClick={handleShow}>
-                <FontAwesomeIcon icon={faCloud} style={{marginRight: "10px"}}/>
-                Weather
+        <div className="layer_control">
+            <button className="btn btn-link widget_nav" onClick={handleShow}>
+                <FontAwesomeIcon icon={faCloud} style={{marginRight: "5px"}}/>
+                Today's Weather
             </button>
 
             <Modal 
@@ -25,10 +25,6 @@ function WeatherWidget(props) {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>
-                        <FontAwesomeIcon icon={faInfoCircle} style={{marginRight: "10px"}}/>
-                        Today's Weather
-                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <TodaysWeather config={props.config}/>

@@ -57,7 +57,27 @@
             }
         }
 
-        ]
+        ],
+        "predefinedBaseMaps": {
+            "Light": {
+                "baseLayer": "mapbox://styles/mapbox/light-v10"
+            },
+            "Dark": {
+                "baseLayer": "mapbox://styles/mapbox/dark-v10"
+            },
+            "Streets": {
+                "baseLayer": "mapbox://styles/mapbox/streets-v11"
+            },
+            "Outdoors": {
+                "baseLayer": "mapbox://styles/mapbox/outdoors-v11"
+            },
+            "Satellite": {
+                "baseLayer": "mapbox://styles/mapbox/satellite-v9"
+            },
+            "Satellite Streets": {
+                "baseLayer": "mapbox://styles/mapbox/satellite-streets-v11"
+            }
+        }
     },
     "weatherAPI": {
         "url": "http://localhost:8010/proxy/data/2.5/onecall",

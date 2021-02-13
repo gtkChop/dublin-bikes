@@ -7,7 +7,6 @@ import HistoricalDataGraph from './HistoricalDataGraph'
 function FiltersModel(props) {
 
     const [historicalData, setHistoricalData] = useState({"historic": [], "errors": ""})
-    const [close, setClose] = useState(false)
     
     useEffect(() => {
         const endPoint = props.config.bikesAPI.dublinBikes.historicalUrl
@@ -24,7 +23,7 @@ function FiltersModel(props) {
         })
         .then(response => response.json())
         .then(data => {
-            setClose(false)
+            props.handleCloseOpenHistoricalDataPane(false)
             if ((data.length > 0) && (data[0].historic.length > 0)) {
                 setHistoricalData({"historic": data[0].historic, "errors": ""})
             } else {
@@ -33,20 +32,20 @@ function FiltersModel(props) {
         })
         .catch((error) => {
             console.warn(error)
-            setClose(false)
+            props.handleCloseOpenHistoricalDataPane(false)
             setHistoricalData({"historic": [], "errors": "Error while fetching historical data"})
         })
         
-    }, [props.formData.from, props.formData.to, props.formData.station.data.st_ID, props.config.bikesAPI.dublinBikes.historicalUrl])
+    }, [props, props.formData.from, props.formData.to, props.formData.station.data.st_ID, props.config.bikesAPI.dublinBikes.historicalUrl])
 
-    if (!close) {
+    if (!props.showhistoricalData) {
         return (
             <div className="bikes__historical_data bikes__widget_component">
                 <div style={{position: "absolute", right: "5px", top: "1px"}}>
                     <button 
                         className="btn btn-link bikes__link_for_darkcomponent" 
                         style={{padding: "0", margin: "0", width: "30px"}}
-                        onClick={() => setClose(true)}
+                        onClick={() => props.handleCloseOpenHistoricalDataPane(true)}
                     >
                         <FontAwesomeIcon icon={faTimes} size="sm"/>
                     </button>

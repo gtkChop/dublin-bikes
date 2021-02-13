@@ -82,6 +82,7 @@ function Filters(props) {
       
     return (
         <>
+
         <h4 style={{textAlign: "center", marginBottom: "0px", marginTop: "10px"}}>Historical Data</h4>
         <hr></hr>
         <div className="bike__stations bikes__component">

@@ -10,8 +10,8 @@ function About(props) {
     const handleShow = () => setShow(true);
 
     return (
-        <div className="bikes__about">
-            <button className="btn btn-link" onClick={handleShow}>
+        <div className="layer_control">
+            <button className="btn btn-link widget_nav" onClick={handleShow}>
                 <FontAwesomeIcon icon={faInfoCircle} style={{marginRight: "5px"}} size="sm"/>
                 About
             </button>
@@ -20,7 +20,7 @@ function About(props) {
                 show={show} 
                 onHide={handleClose}
                 aria-labelledby="contained-modal-title-vcenter"
-                dialogClassName="modal-90w"
+                dialogClassName="modal-90w bikes__about_modal"
                 centered
             >
                 <Modal.Header closeButton>

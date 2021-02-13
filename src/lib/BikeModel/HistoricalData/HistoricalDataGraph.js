@@ -10,12 +10,14 @@ function HistoricalDataGraph(props) {
             {
                 data: [],
                 label: "Available Bikes",
-                backgroundColor: "#89ff00"
+                backgroundColor: "#35ddc1",
+                borderColor: "#025867"
             },
             {
                 data: [],
                 label: "Available Bike Stands",
-                backgroundColor: "#ff9800"
+                backgroundColor: "#35aedd",
+                borderColor: "#025867"
             }
         ]
     }
@@ -39,9 +41,6 @@ function HistoricalDataGraph(props) {
         }
     }
 
-    // 288
-    // 15
-    //286
     const pushDataToPlot = (item) => {
         data.labels.push(getShortDateTime(item.time))
         data.datasets[0].data.push(item.available_bikes)

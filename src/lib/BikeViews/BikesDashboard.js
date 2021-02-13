@@ -7,8 +7,9 @@ import {addMapDataControlsEvents} from '../BikeModel/utils'
 import BikesAvailability from '../BikeModel/HistoricalData/BikesAvailability'
 import FiltersModel from '../BikeModel/HistoricalData/FiltersModel'
 import About from './About/About'
-import ResetMapView from './ResetMapView'
+import ResetMapView from './Map/ResetMapView'
 import WeatherWidget from './Weather/WeatherWidget';
+import LayerControl from './Map/LayerControl';
 
 
 class BikesDashBoard extends Component {
@@ -25,13 +26,38 @@ class BikesDashBoard extends Component {
             workSpaceToggleState: props.config.appConfig.defaultWorkSpaceToggled || false,
             selectedStationData: null,
             showCurrentAvailability: props.showCurrentAvailability || false,
-            historicalFormData: props.historicalFormData || {}
+            historicalFormData: props.historicalFormData || {},
+            showhistoricalData: props.showhistoricalData || false
         }
+    }
+
+    switchBaseStyles = (layer, afterFunction=null) => {
+        this.setState({
+            baseLayer: layer
+        }, () => {
+            try{
+                this.map.remove()
+            } catch(e) {
+                console.log("This is unexpected")
+                console.error(e)
+            }
+            this.initializeMap();
+            if (afterFunction) {
+                afterFunction()
+            }
+        })
+    }
+
+    handleCloseOpenHistoricalDataPane = (val) => {
+        this.setState({
+            showhistoricalData: val
+        })
     }
 
     handleHistoricalFormData = (data) => {
         this.setState({
-            historicalFormData: data
+            historicalFormData: data,
+            showhistoricalData: true
         })
     }
 
@@ -79,8 +105,8 @@ class BikesDashBoard extends Component {
             showCurrentAvailability: false
         })
     }
-    
-    componentDidMount(){
+
+    initializeMap() {
         mapboxgl.accessToken = this.state.config.map.accessToken
         this.map = new mapboxgl.Map({
             container: this.mapRefContainer,
@@ -90,6 +116,10 @@ class BikesDashBoard extends Component {
             trackResize: true
         })
         addMapDataControlsEvents(geojsonData, this.map, this.state.config, this.mapClickEvent)
+    }
+    
+    componentDidMount(){
+        this.initializeMap()
     }
 
     componentWillUnmount() {
@@ -121,12 +151,20 @@ class BikesDashBoard extends Component {
                 }
                 {
                     (Object.keys(this.state.historicalFormData).length > 0) ?
-                        <FiltersModel formData={this.state.historicalFormData} config={this.state.config} />
+                        <FiltersModel 
+                            formData={this.state.historicalFormData} 
+                            config={this.state.config}
+                            handleCloseOpenHistoricalDataPane={this.handleCloseOpenHistoricalDataPane}
+                            showhistoricalData={this.state.showhistoricalData}
+                        />
                     :null
                 }
-                <ResetMapView handleMapReset={this.handleMapReset}/>
-                <About />
-                <WeatherWidget config={this.state.config}/>
+                <div className="bikes__widgets_nav">
+                    <LayerControl config={this.state.config} switchBaseStyles={this.switchBaseStyles} baseLayer={this.state.baseLayer}/>
+                    <ResetMapView handleMapReset={this.handleMapReset}/>
+                    <WeatherWidget config={this.state.config}/>
+                    <About />
+                </div>
             </>
         )
     }

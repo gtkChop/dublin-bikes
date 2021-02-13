@@ -7,10 +7,8 @@ function SearchInput(props) {
         <form className="bike__stations_search_form" style={{display: "flex", flexDirection: "row"}}>
             <label 
                 style={{
-                    alignItems: "center", 
-                    margin: "0", 
-                    display: "flex",
-                    background: "#fff"
+                    alignItems: "center",
+                    display: "flex"
                 }}
             >
                 <FontAwesomeIcon icon={faSearch} style={{marginLeft: "5px"}}/>

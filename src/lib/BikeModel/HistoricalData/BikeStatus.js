@@ -9,7 +9,8 @@ function BikeStatus(props) {
             labels: ["Available Bikes", "Available Bike Stands"],
             datasets: [{
                 data: [props.bikeStatus.available_bikes, props.bikeStatus.available_bike_stands],
-                backgroundColor: ["#89ff00", "#ff9800"]
+                backgroundColor: ["#35ddc1", "#35aedd"],
+                borderColor: "#025867"
     
             }]
         }
@@ -18,7 +19,7 @@ function BikeStatus(props) {
             legend: {
                 display: true,
                 labels: {
-                    fontColor: "#fff"
+                    fontColor: "#23d1f5"
                 }
             }
         }

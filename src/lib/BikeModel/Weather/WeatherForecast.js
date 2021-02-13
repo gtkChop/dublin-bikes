@@ -25,7 +25,8 @@ function WeatherForecast (props) {
 
     return (
         <>
-            <h5 className="text-center">Weather Forecast</h5>
+        <div className="bikes__weather_forecast" style={{marginTop: "30px"}}>
+            <h5 className="text-center">Forecast</h5>
             <div className="bikes__weather_forecast_section" style={{display: "flex"}}>
             {
                 getHourlyWeathrForecast().map((item, index) => {
@@ -36,7 +37,7 @@ function WeatherForecast (props) {
                                     <FontAwesomeIcon icon={faCloud} size="lg" style={{marginRight: "10px"}}/>
                                     <h5>{item.temp} &#176;C</h5>
                                 </div>
-                                <div>
+                                <div style={{fontSize: "12px"}}>
                                     {item.dt}
                                 </div>
                             </div>
@@ -64,6 +65,7 @@ function WeatherForecast (props) {
 
             }
             </div>
+        </div>
         </>
     )
 }

@@ -10,7 +10,6 @@ function TodaysWeather(props){
     
     useEffect(() => {
         const weatherEndpoint = `${props.config.weatherAPI.url}?lat=${props.config.map.initLat}&lon=${props.config.map.initLng}&appid=${props.config.weatherAPI.accessToken}&units=metric`
-        console.log(weatherEndpoint)
         const headers = {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
@@ -24,7 +23,6 @@ function TodaysWeather(props){
             })
             .then(response => response.json())
             .then(weatherData => {
-               console.log(weatherData)
                setWeatherData({
                     weather: {
                         current: weatherData.current,
@@ -41,7 +39,13 @@ function TodaysWeather(props){
                     error: "Error when trying to fetch current weather."
                 })
             })
-    }, [props.config.weatherAPI.weatherEndPoint, props.config.map.initialLat, props.config.weatherAPI.accessToken])
+    }, [
+        props.config.weatherAPI.weatherEndPoint,
+        props.config.weatherAPI.url, 
+        props.config.map.initLat, 
+        props.config.map.initLng, 
+        props.config.weatherAPI.accessToken
+    ])
 
     const dateString = () => {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
@@ -76,7 +80,6 @@ function TodaysWeather(props){
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <b><p style={{margin: "0"}}>{weatherData.weather.current.weather[0].description}</p></b>
                 </div>
-                <hr></hr>
                 <WeatherForecast hourly={weatherData.weather.hourly} noItems={6}/>
             </div>
         )

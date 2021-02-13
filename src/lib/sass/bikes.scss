@@ -7,26 +7,28 @@
     outline: 0;
 }
 
-input[type="text"], input[type="password"], textarea, select { 
+input[type="text"], input[type="date"], input[type="time"], input[type="password"], textarea, select { 
     outline: none;
 }
 
 ::-webkit-input-placeholder { /* Edge */
     font-family: $app-font-family;
     padding-left: 10px;
-    color: $component-background-light;
+    color: $primary-text-color;
+    background-color: $app-background-color;
   }
   
   :-ms-input-placeholder { /* Internet Explorer */
     font-family: $app-font-family;
     padding-left: 10px;
-    color: $component-background-light;
+    color: $primary-text-color;
+    background-color: $app-background-color;
   }
   
   ::placeholder {
     font-family: $app-font-family;
     padding-left: 10px;
-    color: $component-background-light;
+    color: $primary-text-color;
   }
 
 .Bikes__App {
@@ -62,11 +64,18 @@ input[type="text"], input[type="password"], textarea, select {
             background-color: $component-background-light;
             padding: 5px;
             .bike__stations_search_form {
+                label {
+                    color: $primary-text-color;
+                    background-color: $component-background-dark;
+                    margin: 0;
+                }
                 svg {
-                    color: $component-background-dark;
+                    margin-right: 10px;
                 }
                 input {
                     border: 0;
+                    background-color: $component-background-dark;
+                    color: $primary-text-color;
                 }
             }
             .stations__table {
@@ -86,7 +95,10 @@ input[type="text"], input[type="password"], textarea, select {
                 max-width: 50%;
                 float: right;
                 font-size: 16px;
-                color: $component-background-light;
+                background-color: $component-background-dark;
+                color: $primary-text-color;
+                border: 0;
+                padding: 5px;
             }
             select {
                 float: right;
@@ -104,27 +116,43 @@ input[type="text"], input[type="password"], textarea, select {
                 max-width: 62%;
                 min-width: 62%;
                 float: right;
+                background-color: $component-background-dark;
                 .bikes_station_select__control {
                     min-height: 33px;
                     max-height: 33px;
                     width: 100%;
+                    background-color: $component-background-dark;
+                    border: 0;
                 }
                 .bikes_station_select__value-container {
                     max-height: 28px;
                     min-height: 28px;
                     font-size: 15px;
-                    color: $component-background-light;
+                    color: $primary-text-color;
                 }
                 .bikes_station_select__placeholder, .bikes_station_select__option, .bikes_station_select__menu-list {
                     font-size: 15px;
-                    color: $component-background-light!important;
+                    color: $primary-text-color!important;
+                    background-color: $component-background-dark;
+                }
+                .bikes_station_select__option {
+                    &:hover {
+                        background-color: $component-background-light;
+                    }
+                }
+                .bikes_station_select__menu {
+                    background-color: $component-background-dark;
                 }
                 .bikes_station_select__menu-list {
                     max-height: 150px;
-                    overflow: scroll;
+                    overflow-y: scroll;
+                }
+                .bikes_station_select__menu-list::-webkit-scrollbar-track {
+                    background-color: $component-background-dark;
+                    color: $primary-text-color;
                 }
                 .css-1uccc91-singleValue {
-                    color: $component-background-light!important;
+                    color: $primary-text-color!important;
                 }
             }
         }
@@ -132,13 +160,14 @@ input[type="text"], input[type="password"], textarea, select {
 }
 
 .bikes__widget_component {
-    background-color: transparentize($component-background-dark, 0.4);
+    background-color: $component-background-dark;
     .bikes__widget_header {
         align-items: center;
         justify-content: center;
         display: flex;
         flex-direction: column;
         margin-top: 15px;
+        color: $link-color;
         small {
             font-style: italic;
         }
@@ -216,86 +245,29 @@ input[type="text"], input[type="password"], textarea, select {
 }
 
 .bikes__button {
-    color: $component-background-light;
-    background: #fff;
-    &:hover {
-        color: $link-color;
-    }
-}
-
-.map__icon_window {
-    position: absolute;
+    color: $link-color;
     background: $component-background-dark;
-    border-radius: 3px;
-    .map__toggle_button {
-        align-items: center;
-        color: $link-color;
-        display: flex;
-        border-radius: 10px;
-        box-shadow: 0 2px 2px $component-background-dark;
-        h3, h4, h5, h6 {
-            padding-right: 10px;
-            margin-bottom: 0;
-        }
+    &:hover {
+        color: $primary-text-color;
     }
 }
 
 .bikes__brand_container {
-    padding: 5px;
-    text-align: center;
-    border-radius: 40px;
-    max-width: 100px;
-    border: 1px solid;
+    color: $link-color;
     display: flex;
-    flex-direction: column;
-    box-shadow: 0px 1px 1px 0px $link-color;
-    .bikes__brand {
-        font-size: 1em;
-        position: relative;
-        z-index: 1;
-        display: inline-block;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        &.title {
-            transform: scale(1, 1.3);
-            -webkit-transform: scale(1, 1.3);
-            -moz-transform: scale(1, 1.3);
-            -o-transform: scale(1, 1.3);
-            -ms-transform: scale(1, 1.3);
-        }
-        .text {
-            font-family: monospace;
-            letter-spacing: -0.01em;
-            color: $link-color;
-            -webkit-text-stroke: 0.01em #000;
-            filter: progid:DXImageTransform.Microsoft.Glow(Color=$component-background-dark, Strength=1);
-            text-shadow: 0.03em 0.03em 0 $link-color;
-        }
-      }
-      
-      .bikes__sub_brand {  
-        font-size: 0.5em;
-        position: relative;
-        z-index: 1;
-        display: inline-block;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        &.title {
-            transform: scale(1, 1.3);
-            -webkit-transform: scale(1, 1.3);
-            -moz-transform: scale(1, 1.3);
-            -o-transform: scale(1, 1.3);
-            -ms-transform: scale(1, 1.3);
-        }
-        .text {
-            font-family: cursive;
-            letter-spacing: -0.01em;
-            color: $link-color;
-            -webkit-text-stroke: 0.01em #000;
-            filter: progid:DXImageTransform.Microsoft.Glow(Color=$component-background-dark, Strength=1);
-            text-shadow: 0.03em 0.03em 0 $link-color;
-        }
-      }
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid $link-color;
+    border-radius: 10px;
+    padding: 5px;
+    svg {
+        margin-left: 10px;
+    }
+    img {
+        max-width: 200px;
+    }
 }
 
 .mapboxgl-ctrl.mapboxgl-ctrl-group {
@@ -318,86 +290,160 @@ input[type="text"], input[type="password"], textarea, select {
     background: transparent;
 }
 
-.bikes__about, .bikes__reset_map_view, .bikes__weather {
+.map__toggle_button {
+    position: absolute;
+    right: 40px;
+    top: 15px;
+    background: $component-background-light;
+    display: flex;
+    align-items: center;
+    color: $primary-text-color;
+    padding: 0.2rem;
+    padding-right: 0.4rem;
+    padding-left: 0.4rem;
+    svg {
+        margin-left: 5px;
+    }
+    &:hover {
+        color: $link-color;
+    }
+}
+
+.bikes__widgets_nav {
     position: absolute;
     top: 15px;
     left: 100px;
-    background:$component-background-dark;
-    button {
+    background:transparent;
+    font-size: 12px;
+    display: flex;
+    .widget_nav {
         align-items: center;
-        color: $link-color;
-        display: flex;
-        box-shadow: 0 2px 2px $component-background-dark;
-        &:hover {
-            color: $link-color;
-        }
-    }
-}
-
-.map__icon_window {
-    top: 15px;
-    right: 20px;
-}
-
-.bikes__reset_map_view {
-    top: 15px;
-    left: 200px;
-}
-
-.bikes__weather {
-    top: 15px;
-    left: 315px;
-}
-
-
-.modal-content {
-    background-color: $component-background-light;
-    color: $primary-text-color;
-    border-radius: 10px;
-    min-width: 60%;
-    min-height: 60%;
-    padding: 10px;
-    .modal-header {
-        text-align: center;
-        background-color: $component-background-dark;
-        border-bottom: 1px solid $link-color;
-    }
-    .modal-footer {
-        background-color: $component-background-dark;
-    }
-    .close {
         color: $primary-text-color;
-        opacity: 0.9;
+        background: $component-background-light;
+        display: flex;
+        padding: 0.2rem;
+        padding-right: 0.4rem;
+        padding-left: 0.4rem;
+        box-shadow: none;
         &:hover {
             color: $link-color;
         }
     }
+    .layer_control {
+        margin-right: 15px;
+    }
+}
+
+.bikes__weather_modal{
+    min-width: 80%;
+    .modal-content {
+        background-color: transparent;
+        color: $primary-text-color;
+        border: none;
+        min-height: 60%;
+        padding: 10px;
+        border: 1px solid $link-color;
+        .bikes__weather_forcast_header {
+            background-color: transparent;
+            padding: 10px;
+            margin: 5px;
+        }
+        .bikes__weather_forcast_body {
+            padding: 10px;
+            margin: 5px;
+            font-size: 13px;
+        }
+        .modal-header {
+            text-align: center;
+            border: none;
+        }
+        .close {
+            color: $primary-text-color;
+            opacity: 0.9;
+            &:hover {
+                color: $link-color;
+            }
+        }
+        
+    }
+}
+
+.bikes__about_modal {
+    min-width: 70%;
+    color: $primary-text-color;
     .bikes__about_resources, .bikes__about_contact {
         margin-top: 20px;
+        h6 {
+            font-weight: bold;
+        }
     }
-}
-
-.bikes__weather_modal {
-    min-width: 90%;
-    hr {
-        border-top: 1px dotted $link-color;
-        margin-top: 0.5rem;
-        margin-bottom: 20px;
-
-    }
-    .bikes__weather_forcast_header {
+    .modal-header {
         background-color: $component-background-dark;
-        padding: 10px;
-        margin: 5px;
-        border: 1px solid $link-color;
+        button {
+            color: $primary-text-color;
+            opacity: 1;
+            &:hover {
+                color: $link-color;
+            }
+        }
     }
-    .bikes__weather_forcast_body {
-        padding: 10px;
-        margin: 5px;
-        font-size: 13px;
+    .modal-body {
+        background-color: $component-background-light;
     }
 }
 
 .bikes__cloud_link {
     color: $link-color;
+}
+
+.css-1pahdxg-control:hover {
+    border: 0;
+}
+
+.bikes__styles_option_pane {
+    width: 350px;
+    font-size: 15px;
+    position: absolute;
+    margin-top: 10px;
+    background: $component-background-light;
+    .caret-up {
+        color: $component-background-dark;
+        margin-left: 25px;
+        position: absolute;
+        top: -20px;
+    }
+    .bikes__styles_options {
+        padding-top: 0;
+        .bikes__styles_option_header {
+            background: $component-background-dark;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .bikes__styles_option_body {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 1px;
+            padding-bottom: 10px;
+            
+        }
+        .bikes__styles_option {
+            width: 33.33%;
+            text-align: center;
+            button {
+                display: flex;
+                flex-direction: column;
+                font-size: 13px;
+                color: $primary-text-color;
+                img {
+                    width: 100%;
+                    border-radius: 5px;
+                    height: 80px;
+                }
+                &:hover {
+                    border: 1px solid $link-color;
+                }
+            }
+        }
+    }
 }
