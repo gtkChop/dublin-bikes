@@ -447,3 +447,61 @@ input[type="text"], input[type="date"], input[type="time"], input[type="password
         }
     }
 }
+
+
+@media only screen and (max-width: 1024px)
+ {
+    body {
+        font-size: 15px;
+    }
+    .Bikes__App {
+        flex-direction: column;
+        .Workspace__container {
+            right: auto;
+            display: block;
+            min-height: 0%;
+            width: 100%;
+            position: relative;
+            .workspace__toggle {
+                display: none;
+            }
+        }
+        .Map__container {
+            min-height: 500px;
+        }
+        .bikes__widgets_nav {
+            flex-direction: column;
+            right: 10px;
+            left: auto;
+            align-items: flex-end;
+            .layer_control {
+                margin: 0;
+                margin-bottom: 10px;
+            }
+            .bikes__styles_option_pane {
+                right: 4px;
+                min-width: 80%;
+                svg {
+                    right: 20px;
+                }
+            }
+        }
+        .bikes__widget_component {
+            z-index: 1000;
+        }
+        .bikes__historical_data {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            border-radius: 0;
+            width: 100%;
+        }
+    }
+    
+
+    .bikes__weather_modal {
+        .bikes__weather_forecast {
+            display: none!important;
+        }
+    }
+}

@@ -88,16 +88,6 @@
             "stationsUrl": "http://localhost:8010/proxy/api/v1/resources/station",
             "historicalUrl": "http://localhost:8010/proxy/api/v1/resources/historical",
             "apiKey": ""
-        },
-        "bleeperBikes": {
-            "stationsUrl": "",
-            "historicalUrl": "",
-            "apiKey": ""
-        },
-        "mobyBikes": {
-            "stationsUrl": "",
-            "historicalUrl": "",
-            "apiKey": ""
         }
     },
     "appConfig": {
