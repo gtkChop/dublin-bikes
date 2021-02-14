@@ -5,10 +5,16 @@ import config from './wwwroot/config.json'
 import { ConfigLoader } from './lib/BikeModel/utils'
 import { configContext } from './lib/BikeModel/Context'
 import BikesDashboard from './lib/BikeViews/BikesDashboard'
+import {extractStateFromUrl, isShareUrl} from './lib/BikeModel/ShareUrl/ShareUrlModel'
 
 function AppWithContext() {
   const config = useContext(configContext)
-  return <BikesDashboard config={config}/>
+  var stateFromShareUrl = {}
+  if (isShareUrl()) {
+    stateFromShareUrl = extractStateFromUrl()
+  }
+  
+  return <BikesDashboard config={config} {...stateFromShareUrl}/>
 }
 
 function BikesApp() {

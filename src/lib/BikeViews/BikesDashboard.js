@@ -10,6 +10,8 @@ import About from './About/About'
 import ResetMapView from './Map/ResetMapView'
 import WeatherWidget from './Weather/WeatherWidget';
 import LayerControl from './Map/LayerControl';
+import ShareUrlNav from './ShareUrl/ShareUrlNav'
+import { getShareUrl } from '../BikeModel/ShareUrl/ShareUrlModel'
 
 
 class BikesDashBoard extends Component {
@@ -23,12 +25,27 @@ class BikesDashBoard extends Component {
             lat: props.lat || props.config.map.initLat,
             zoom: props.zoom || props.config.map.initZoom,
             baseLayer: props.baseLayer || props.config.map.baseLayer,
-            workSpaceToggleState: props.config.appConfig.defaultWorkSpaceToggled || false,
-            selectedStationData: null,
+            workSpaceToggleState:  props.workSpaceToggleState || props.config.appConfig.defaultWorkSpaceToggled,
+            selectedStationeventData: props.selectedStationeventData || {},
             showCurrentAvailability: props.showCurrentAvailability || false,
             historicalFormData: props.historicalFormData || {},
-            showhistoricalData: props.showhistoricalData || false
+            showhistoricalData: props.showhistoricalData || false,
+            _shareUrl: null
         }
+    }
+
+    shareUrlHandler = () => {
+        var shareUrl = null
+        if (!this.state._shareUrl) {
+            try{
+                shareUrl = getShareUrl(this.state, this.map)
+            } catch(e) {
+                console.error(e)
+            }
+        }
+        this.setState({
+            _shareUrl: shareUrl
+        })
     }
 
     switchBaseStyles = (layer, afterFunction=null) => {
@@ -161,6 +178,7 @@ class BikesDashBoard extends Component {
                 }
                 <div className="bikes__widgets_nav">
                     <LayerControl config={this.state.config} switchBaseStyles={this.switchBaseStyles} baseLayer={this.state.baseLayer}/>
+                    <ShareUrlNav config={this.state.config} shareUrlHandler={this.shareUrlHandler} shareUrl={this.state._shareUrl}/>
                     <ResetMapView handleMapReset={this.handleMapReset}/>
                     <WeatherWidget config={this.state.config}/>
                     <About />

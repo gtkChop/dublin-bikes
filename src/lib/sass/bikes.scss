@@ -198,7 +198,7 @@ input[type="text"], input[type="date"], input[type="time"], input[type="password
         position: absolute;
         bottom: 10px;
         padding: 10px;
-        left: 120px;
+        left: 300px;
         border-radius: 5px;
         width: 500px;
     }
@@ -445,6 +445,19 @@ input[type="text"], input[type="date"], input[type="time"], input[type="password
                 }
             }
         }
+    }
+}
+
+.bikes__share_url {
+    .bikes__input_url {
+        width: 100%;
+    }
+    input {
+        background: $component-background-dark;
+        color: $primary-text-color;
+        border: 1px solid $primary-text-color;
+        padding: 5px;
+        width: calc(100% - 42px);
     }
 }
 
