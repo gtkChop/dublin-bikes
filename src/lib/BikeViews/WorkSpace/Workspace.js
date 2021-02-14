@@ -41,8 +41,17 @@ function Workspace(props) {
                     </button>
                     <div className="workspace__controls">
                         <WorkSpaceBrand />
-                        <BikeSations config={props.config} data={props.data} locationInMapEvent={props.locationInMapEvent}/>
-                        <Filters allStations={props.data} config={props.config} handleHistoricalFormData={props.handleHistoricalFormData}/>
+                        <BikeSations 
+                            config={props.config} 
+                            data={props.data} 
+                            locationInMapEvent={props.locationInMapEvent}
+                        />
+                        <Filters 
+                            allStations={props.data} 
+                            config={props.config} 
+                            handleHistoricalFormData={props.handleHistoricalFormData}
+                            historicalFormData={props.historicalFormData}
+                        />
                         <Footer config={props.config}/>
                     </div>
                 </div>

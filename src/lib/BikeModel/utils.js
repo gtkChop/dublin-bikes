@@ -136,6 +136,31 @@ function getShortDateTime(val) {
     return cleanVal
 }
 
+function stringToDate(val) {
+    if (val) {
+        return `${val.slice(0, 4)}-${val.slice(4, 6)}-${val.slice(6, 8)}`
+    }
+    return ""
+}
+
+function extractTimeFromDateTimeString(val) {
+    if (val) {
+        var _time = val.slice(-4)
+        return `${_time.slice(0, 2)}:${_time.slice(-2)}`
+
+    }
+    return "00:00"
+}
+
+function parseFormData(formData) {
+    return {
+        fromDate: stringToDate(formData.from),
+        toDate: stringToDate(formData.to),
+        fromTime: extractTimeFromDateTimeString(formData.from),
+        toTime: extractTimeFromDateTimeString(formData.to),
+    }
+}
+
 export {
     FuzzyMatch,
     TitleCase,
@@ -143,5 +168,6 @@ export {
     addMapDataControlsEvents,
     getCurrentDateDiffHours,
     getDifferenceBetweenDates,
-    getShortDateTime
+    getShortDateTime,
+    parseFormData
 }

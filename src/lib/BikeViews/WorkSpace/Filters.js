@@ -2,14 +2,16 @@ import React, {useEffect, useState} from 'react'
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/fontawesome-free-solid'
-import {getDifferenceBetweenDates} from '../../BikeModel/utils'
+import {getDifferenceBetweenDates, parseFormData} from '../../BikeModel/utils'
 
 function Filters(props) {
+    // This is useful if the data is coming from share url
+    var InitialFormData = parseFormData(props.historicalFormData)
     const [stations, setStations] = useState([])
-    const [FromDate, setFromDate] = useState({"date": "", "time": "00:00"})
-    const [ToDate, setToDate] = useState({"date": "", "time": "00:00"})
+    const [FromDate, setFromDate] = useState({"date": InitialFormData.fromDate, "time": InitialFormData.fromTime})
+    const [ToDate, setToDate] = useState({"date": InitialFormData.toDate, "time": InitialFormData.toTime})
     const [errorMsg, setErrorMsg] = useState("")
-    const [selectedOption, setSelectedOption] = useState(null)
+    const [selectedOption, setSelectedOption] = useState(Object.keys(props.historicalFormData).length?props.historicalFormData.station:null)
 
     const closeErrorMessageHandler = () => {
         setErrorMsg("")

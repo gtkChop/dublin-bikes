@@ -155,6 +155,7 @@ class BikesDashBoard extends Component {
                     data={allStations}
                     locationInMapEvent={this.locationInMapEvent}
                     handleHistoricalFormData={this.handleHistoricalFormData}
+                    historicalFormData={this.state.historicalFormData}
                 />
                 {
                     this.state.showCurrentAvailability ?
